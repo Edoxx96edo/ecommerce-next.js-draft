@@ -1,13 +1,19 @@
 "use client";
 
-import { ThemeProvider } from "./theme-providers";
+import ThemeProvider from "./theme-providers";
+import { Toaster } from "@/components/ui/toast";
+import { ClerkProvider } from "@clerk/nextjs";
 
 function Providers({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        {children}
-      </ThemeProvider>
+      <ClerkProvider>
+        <Toaster>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+        </Toaster>
+      </ClerkProvider>
     </>
   );
 }
